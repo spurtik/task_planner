@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Planner</title>
+    <title>Task List</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- project css-->
@@ -12,7 +12,7 @@
 <body>
 
     <header class="container-fluid text-center">
-        <h3 class="display-5 font-weight-bold decoration">Task Planner Application</h3>
+        <h3 class="display-5 font-weight-bold decoration">Task App</h3>
     </header>
 <!-- Form fields for Task Planner App-->
     <form class="pt-5 pl-5"> 
@@ -38,5 +38,21 @@
             <input type="text" class="col-8 offset-3 form-control-plaintext" id="userName">
         </div>
     </form>
+    <!-- Card Layout to Display Task Lists -->
+    <div class="display-5 text-center"><h3>Tasks</h3></div>
+    <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
+        <div class="card-body">
+            <h5 class="card-title">Task 1</h5>
+            <p class="card-text"> Create WireFrame </p>
+            <p class="card-text"> Spurti K D </p>
+            <p class="card-text"> 20-01-2021 </p>
+          </div>
+          <div class="card-footer">
+            <small class="font-weight-bold text-left">Done </small>
+                <button type="button" class="btn btn-outline-success float-right margin-left">Done</button>
+                <button type="button" class="btn btn-outline-danger float-right">Delete</button>
+           
+          </div>
+      </div>
 </body>
 </html>   
