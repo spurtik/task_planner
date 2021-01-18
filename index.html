@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planner</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- project css-->
+    <link rel="stylesheet" href="/css/styles.css"> 
+</head>
+<body>
+    <!-- Navbar Component -->
+    <nav class="navbar navbar-expand bg-light">
+        <div class="ml-auto mr-4">
+            <ul class="navbar-nav">
+                <!-- for display width 768px and up -->
+                <li class="nav-item pl-3">
+                    <a class="nav-link" href="#">Sign in</a>
+                </li>    
+            </ul>
+        </div>
+    </nav>
+    
+    <header class="container-fluid text-center">
+        <h1 class="display-1">Task Planner</h1>
+    </header>
+
+    <form class="pt-5 pl-5"> 
+        <div class="form-group row">
+            <label class="col-8 offset-3" for="userName">Name: *</label>
+            <input type="text" class="col-8 offset-3 form-control" id="userName" placeholder="Name">
+        </div>
+        <div class="form-group row">
+            <label class="col-8 offset-3" for="description">Description: *</label>
+            <input type="text" class="col-8 offset-3 form-control" id="description" size="10" placeholder="Description">
+        </div>
+        <div class="form-group">
+            <label class="col-4 offset-3" for="assignedTo">Assigned To: *</label>
+            <input type="text" class="col-4 offset-3 form-control" id="assignedTo" placeholder="AssignedTo">
+            <div class="form-group row">
+                <label class="col-8 offset-3" for="userName">Name: *</label>
+                <input type="text" class="col-8 offset-3 form-control-plaintext" id="userName">
+            </div>
+        </div>
+
+        <div class="form-group row ml-auto">
+            <label class="col-8 offset-3" for="userName">Name: *</label>
+            <input type="text" class="col-8 offset-3 form-control-plaintext" id="userName">
+        </div>
+    </form>
+</body>
+</html>   
