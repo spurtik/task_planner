@@ -27,16 +27,29 @@
         <div class="form-group row">
             <label class="col-8 offset-3" for="assignedTo">Assigned To: <span class="text-danger">*</span></label>
             <input type="text" class="col-2 offset-3 form-control" id="assignedTo" placeholder="AssignedTo">
-            <div class="form-group row">
-                <label class="col-8 offset-3" for="userName">Name: *</label>
-                <input type="text" class="col-8 offset-3 form-control-plaintext" id="userName">
-            </div>
         </div>
-
-        <div class="form-group row ml-auto">
-            <label class="col-8 offset-3" for="userName">Name: *</label>
-            <input type="text" class="col-8 offset-3 form-control-plaintext" id="userName">
-        </div>
+        <div class="form-group row">
+            <label class="col-8 offset-3" size="10" for="dueDate">Due Date: *</label>
+                <input
+                    type="date"
+                    id="dueDate"
+                    name="trip-start"
+                    placeholder="dd-mm-yyyy"
+                    value=""
+                    min="01-01-2021"
+                    max="31-12-2022"
+                    class="col-3 offset-3 form-control"
+                />
+          </div>
+          <div class="form-group row">
+            <label class="col-3 offset-3" size="4" for="task">Task Status:</label>
+            <select class="col-3 offest-3 form-control" id ="task">
+              <option>In Progress</option>
+              <option>Done</option>
+              <option>Pending</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-primary col-1 offset-3" size="10">Submit</button>
     </form>
     <!-- Card Layout to Display Task Lists -->
     <div class="display-5 text-center"><h3>Tasks</h3></div>
