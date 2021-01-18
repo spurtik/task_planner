@@ -1,3 +1,7 @@
-.decoration {
+* {
+    margin: 0;
+    padding: 0;
+}
+ .decoration {
     text-decoration: underline;
 }
