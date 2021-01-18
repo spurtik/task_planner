@@ -17,39 +17,47 @@
 <!-- Form fields for Task Planner App-->
     <form class="pt-5 pl-5"> 
         <div class="form-group row">
-            <label class="col-8 offset-3" for="userName">Name: <span class="text-danger">*</span></label>
-            <input type="text" class="col-2 offset-3 form-control" id="userName" placeholder="Name">
+            <label class="col-8 offset-3" for="userName">Name:<span class="text-danger">*</span></label>
+            <input type="text" class="col-3 offset-3 form-control" id="userName" placeholder="Name">
         </div>
         <div class="form-group row">
-            <label class="col-8 offset-3" for="description">Description: <span class="text-danger">*<span></label>
-            <input type="text" class="col-2 offset-3 form-control" id="description" size="10" placeholder="Description">
+            <label class="col-8 offset-3" for="description">Description:<span class="text-danger">*<span></label>
+            <input type="text" class="col-3 offset-3 form-control" id="description" size="10" placeholder="Description">
         </div>
-        <div class="form-group row">
-            <label class="col-8 offset-3" for="assignedTo">Assigned To: <span class="text-danger">*</span></label>
-            <input type="text" class="col-2 offset-3 form-control" id="assignedTo" placeholder="AssignedTo">
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-10 offset-6" for="assignedTo">Assigned To:<span class="text-danger">*</span></label>
+                    <input type="text" class="col-12 offset-6 form-control" id="assignedTo" placeholder="AssignedTo">
+                </div>
+                <div class="form-group">
+                    <label class="col-12 offset-10" for="dueDate">Due Date:<span class="text-danger">*</span></label>
+                        <input
+                            type="date"
+                            id="dueDate"
+                            name="trip-start"
+                            placeholder="dd-mm-yyyy"
+                            value=""
+                            min="01-01-2021"
+                            max="31-12-2022"
+                            class="col-12 offset-10 form-control"
+                        />
+                  </div>
+            </div>          
         </div>
-        <div class="form-group row">
-            <label class="col-8 offset-3" size="10" for="dueDate">Due Date: *</label>
-                <input
-                    type="date"
-                    id="dueDate"
-                    name="trip-start"
-                    placeholder="dd-mm-yyyy"
-                    value=""
-                    min="01-01-2021"
-                    max="31-12-2022"
-                    class="col-3 offset-3 form-control"
-                />
-          </div>
-          <div class="form-group row">
-            <label class="col-3 offset-3" size="4" for="task">Task Status:</label>
-            <select class="col-3 offest-3 form-control" id ="task">
-              <option>In Progress</option>
-              <option>Done</option>
-              <option>Pending</option>
-            </select>
-          </div>
-          <button type="button" class="btn btn-primary col-1 offset-3" size="10">Submit</button>
+        <br>         
+            <div class="container">
+                <div class="form-group row">                  
+                    <select class="col-2 offset-1 form-control" id ="task">
+                        <option>In Progress</option>
+                        <option>Done</option>
+                        <option>Pending</option>
+                    </select>
+                <div class="col-3 offset-1">
+                     <button type="button" class="btn btn-primary">Submit</button>  
+                </div> 
+               </div>                                 
+            </div>              
     </form>
 </body>
 </html>   
