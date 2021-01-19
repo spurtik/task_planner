@@ -18,42 +18,42 @@
     </header>
     <!-- Form fields for Task Planner App-->
     <div class="container pr-5">
-        <form class="my-5">
+        <form class="my-5" method="post">
             <div class="form-group row">
                 <label class="col-sm-12 pt-5 font-weight-bold" for="userName">Name:<span
                         class="text-danger">*</span></label>
-                <input type="text" class="col-sm-4 ml-3 form-control" id="userName" placeholder="Name">
+                <input type="text" class="col-sm-4 ml-3 form-control" id="userName" placeholder="Name" required="true">
             </div>
             <div class="form-group row">
                 <label class="col-sm-12 font-weight-bold" for="description">Description:<span
                         class="text-danger">*<span></label>
-                <input type="text" class="col-sm-4 ml-3 form-control" id="description" placeholder="Description">
+                <input type="text" class="col-sm-4 ml-3 form-control" id="description" placeholder="Description" required="true">
             </div>
             <div class="container col-sm-12 ">
                 <div class="row ">
                     <div class="form-group">
                         <label class="font-weight-bold" for="assignedTo">Assigned To:<span
                                 class="text-danger">*</span></label>
-                        <input type="text" class="col-sm-10 form-control" id="assignedTo" placeholder="Assigned To">
+                        <input type="text" class="col-sm-10 form-control" id="assignedTo" placeholder="Assigned To" required="true">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold" for="dueDate">Due Date:<span
                                 class="text-danger">*</span></label>
                         <input type="date" id="dueDate" name="trip-start" placeholder="dd-mm-yyyy" value=""
-                            min="01-01-2021" max="31-12-2022" class="col-sm-10 form-control" />
+                            min="01-01-2021" max="31-12-2022" class="col-sm-10 form-control" required="true" />
                     </div>
                 </div>
             </div>
             <br>
             <div class="container col-sm-12">
                 <div class="form-group row">
-                    <select class=" col-sm-3 form-control" id="task">
+                    <select class=" col-sm-3 form-control" id="task" required="true">
                         <option>In Progress</option>
                         <option>Done</option>
                         <option>Pending</option>
                     </select>
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary font-weight-bold">Submit</button>
+                        <button type="submit" class="btn btn-primary font-weight-bold">Submit</button>
                     </div>
                 </div>
             </div>
@@ -63,17 +63,80 @@
      <!-- Card Layout to Display Task Lists -->
      <div class="display-5 text-center"><h3>Tasks</h3></div>
      <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
-         <div class="card-body">
-             <h5 class="card-title">Task 1</h5>
-             <p class="card-text"> Create WireFrame </p>
-             <p class="card-text"> Spurti K D </p>
-             <p class="card-text"> 20-01-2021 </p>
-           </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Task 1</li>
+            <li class="list-group-item">Create WireFrame</li>
+            <li class="list-group-item">Spurti K D</li>
+            <li class="list-group-item">20-01-2021 </li>
+        </ul>
            <div class="card-footer">
-             <small class="font-weight-bold text-left">Done </small>
-                 <button type="button" class="btn btn-outline-success float-right margin-left">Done</button>
-                 <button type="button" class="btn btn-outline-danger float-right">Delete</button>          
+                <small class="font-weight-bold text-left">Done</small>
+                <div class="float-right ml-5">
+                <button type="button" class="btn btn-outline-success">Done</button>
+                <button type="button" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </div>
+       </div><br />
+      <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Task 2</li>
+            <li class="list-group-item">Implement WireFrame using Bootstrap</li>
+            <li class="list-group-item">Miguel</li>
+            <li class="list-group-item">28-01-2021 </li>
+        </ul>
+          <div class="card-footer">
+               <small class="font-weight-bold text-left">In Progress</small>
+               <div class="float-right ml-5">
+               <button type="button" class="btn btn-outline-success">Done</button>
+               <button type="button" class="btn btn-outline-danger">Delete</button>
+               </div>
            </div>
-       </div>
+      </div><br />
+      <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Task 3</li>
+            <li class="list-group-item">Create a Task Layout</li>
+            <li class="list-group-item">Fahad</li>
+            <li class="list-group-item">28-01-2021 </li>
+        </ul>
+          <div class="card-footer">
+               <small class="font-weight-bold text-left">Pending</small>
+               <div class="float-right ml-5">
+               <button type="button" class="btn btn-outline-success">Done</button>
+               <button type="button" class="btn btn-outline-danger">Delete</button>
+               </div>
+           </div>
+      </div><br />
+      <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Task 4</li>
+            <li class="list-group-item">Create Task List component</li>
+            <li class="list-group-item">Miguel/Fahad</li>
+            <li class="list-group-item">28-01-2021 </li>
+        </ul>
+          <div class="card-footer">
+               <small class="font-weight-bold text-left">Pending</small>
+               <div class="float-right ml-5">
+               <button type="button" class="btn btn-outline-success">Done</button>
+               <button type="button" class="btn btn-outline-danger">Delete</button>
+               </div>
+           </div>
+      </div><br />
+      <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Task 4</li>
+            <li class="list-group-item">Unit Testing</li>
+            <li class="list-group-item">Miguel/Fahad/Spurti</li>
+            <li class="list-group-item">28-01-2021 </li>
+        </ul>
+          <div class="card-footer">
+               <small class="font-weight-bold text-left">Pending</small>
+               <div class="float-right ml-5">
+               <button type="button" class="btn btn-outline-success">Done</button>
+               <button type="button" class="btn btn-outline-danger">Delete</button>
+               </div>
+           </div>
+      </div>
+
 </body>
 </html>
