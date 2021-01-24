@@ -9,8 +9,6 @@ form.addEventListener("submit", (event) => {
   
   let validationFail = 0;
 
-  event.preventDefault();
-  event.stopPropagation();
   console.log("Task Name :" + validateName.value.length);
   console.log("Task Description :" + validateDescription.value.length);
   console.log("Task Assigned To :" + validateAssignedTo.value.length);
@@ -48,7 +46,6 @@ form.addEventListener("submit", (event) => {
   } 
 
   // Form validation for Due Date Field not empty
-  // try your own validation for a date in the future
   if (validateDueDate.value) {
     validateDueDate.classList.add("is-valid");
     validateDueDate.classList.remove("is-invalid");
@@ -72,23 +69,20 @@ form.addEventListener("submit", (event) => {
     validateDueDate.classList.remove("is-valid");
     validationFail++;
   }
-
-  // Form validation for Task Status Field not empty
-  if (validateAssignedTo.value) {
-    validateAssignedTo.classList.add("is-valid");
-    validateAssignedTo.classList.remove("is-invalid");
-  } else {
-    validateAssignedTo.classList.add("is-invalid");
-    validateAssignedTo.classList.remove("is-valid");
-    validationFail++;
-  }
   
   // If validation fails then function will not proceed further and
   // will return. The value of validationFail will also needed to be
   // reset to 0.
   // ----------------------------------------------------------------------------------
   if (validationFail > 0) {
+    event.preventDefault();
+    event.stopPropagation();
     validationFail = 0;
+    alert("Please correct any error and Submit again")
+    //console.log("Form Invalid");
     return;
+  } else {
+    form.classList.add("was-validated");
+    alert("Creating Submitted Task")
   }
 });
