@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- project css-->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script defer src="./js/taskManager.js"></script>
+    <script defer src="./js/index.js"></script>
 </head>
 <body>
     <!-- Task Planner Application -->
@@ -18,29 +20,37 @@
     </header>
     <!-- Form fields for Task Planner App-->
     <div class="container pr-5">
-        <form class="my-5" method="post">
+        <form id="new-task-form" class="my-5">
             <div class="form-group row">
-                <label class="col-sm-12 pt-5 font-weight-bold" for="userName">Name:<span
+                <label class="col-sm-12 pt-5 font-weight-bold" for="taskName">Name:<span
                         class="text-danger">*</span></label>
-                <input type="text" class="col-sm-4 ml-3 form-control" id="userName" placeholder="Name" required="true">
+                <input type="text" class="col-sm-4 ml-3 form-control" id="taskName" placeholder="Name" required="true">
+                <!-- <div class="valid-feedback">Looks good!</div> -->
+                <div class="invalid-feedback">Task Name should be at least 6 characters.</div>  
             </div>
             <div class="form-group row">
-                <label class="col-sm-12 font-weight-bold" for="description">Description:<span
+                <label class="col-sm-12 font-weight-bold" for="taskDescription">Description:<span
                         class="text-danger">*<span></label>
-                <input type="text" class="col-sm-4 ml-3 form-control" id="description" placeholder="Description" required="true">
+                <input type="text" class="col-sm-4 ml-3 form-control" id="taskDescription" placeholder="Description" required="true">
+                <!-- <div class="valid-feedback">Looks good!</div> -->
+                <div class="invalid-feedback">Task Description should be at least 6 characters.</div>  
             </div>
             <div class="container col-sm-12 ">
                 <div class="row ">
                     <div class="form-group">
-                        <label class="font-weight-bold" for="assignedTo">Assigned To:<span
+                        <label class="font-weight-bold" for="taskAssignedTo">Assigned To:<span
                                 class="text-danger">*</span></label>
-                        <input type="text" class="col-sm-10 form-control" id="assignedTo" placeholder="Assigned To" required="true">
+                        <input type="text" class="col-sm-10 form-control" id="taskAssignedTo" placeholder="Assigned To" required="true">
+                        <!-- <div class="valid-feedback">Looks good!</div> -->
+                        <div class="invalid-feedback">Task Assigned To should be at least 6 characters.</div>  
                     </div>
                     <div class="form-group">
-                        <label class="font-weight-bold dueDate" for="dueDate">Due Date:<span
+                        <label class="font-weight-bold dueDate" for="taskDueDate">Due Date:<span
                                 class="text-danger">*</span></label>
-                        <input type="date" id="dueDate" name="trip-start" placeholder="dd-mm-yyyy" value=""
+                        <input type="date" id="taskDueDate" placeholder="dd-mm-yyyy" value=""
                             min="01-01-2021" max="31-12-2022" class="col-sm-11 form-control dueDate" required="true" />
+                            <!-- <div class="valid-feedback">Date is valid.</div> -->
+                            <div class="invalid-feedback">Task Due Date should be a valid date and not in the past.</div>  
                     </div>
                 </div>
             </div>
@@ -49,12 +59,14 @@
                 <div class="form-group row">
                     <label class="font-weight-bold" for="status">Status:<span
                         class="text-danger">*</span></label>
-                    <select class=" col-sm-3 form-control" id="task" required="true">
+                    <select class=" col-sm-3 form-control" id="taskStatus" required="true">
                         <option>In Progress</option>
                         <option>Done</option>
                         <option>Pending</option>
                     </select>
-                    <div class="col-sm-6">
+                    <!-- <div class="valid-feedback">Looks good!</div> -->
+                    <!-- <div class="invalid-feedback">Please provide a valid name.</div>   -->
+                        <div class="col-sm-6">
                         <button type="submit" class="btn btn-primary font-weight-bold">Submit</button>
                     </div>
                 </div>
@@ -63,8 +75,8 @@
     </div>
    <!--  Tasks -->
      <!-- Card Layout to Display Task Lists -->
-     <div class="display-5 text-center"><h3>Tasks</h3></div>
-     <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
+     <div class="display-5 text-center" id='task_cards'><h3>Tasks</h3></div>
+     <!-- <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Task 1</li>
             <li class="list-group-item">Create WireFrame</li>
@@ -138,7 +150,6 @@
                <button type="button" class="btn btn-outline-danger">Delete</button>
                </div>
            </div>
-      </div>
-
+      </div> -->
 </body>
 </html>
