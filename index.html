@@ -16,7 +16,7 @@
 <body>
     <!-- Task Planner Application -->
     <header class="container-fluid text-center">
-        <h3 class="display-5 mt-5 font-weight-bold decoration">Task Planner Application</h3>
+        <h3 class="display-5 mt-5 font-weight-bold decoration">Task Planner</h3>
     </header>
     <!-- Form fields for Task Planner App-->
     <div class="container pr-5">
@@ -61,7 +61,7 @@
                         class="text-danger">*</span></label>
                     <select class=" col-sm-3 form-control" id="taskStatus" required="true">
                         <option>In Progress</option>
-                        <option>Done</option>
+                        <!-- <option>Done</option> -->
                         <option>Pending</option>
                     </select>
                     <!-- <div class="valid-feedback">Looks good!</div> -->
@@ -75,7 +75,8 @@
     </div>
    <!--  Tasks -->
      <!-- Card Layout to Display Task Lists -->
-     <div class="display-5 text-center" id='task_cards'><h3>Tasks</h3></div>
+     <h3 class="display-5 text-center">Tasks</h3>
+     <div class="display-5 text-center" id='task_cards'></div>
      <!-- <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Task 1</li>

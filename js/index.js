@@ -1,11 +1,4 @@
-//let currentId = 1;
 const currentTasks = new TaskManager();
-// currentTasks.tasks.push('task1');
-// console.log(`current tasks are ${currentTasks.tasks}`);
-// currentTasks.addTask(1,1,1,1,1); 
-// console.log(`current tasks are ${currentTasks.tasks[1].id}`);
-// currentTasks.addTask(1,1,1,1,1); 
-// console.log(`current tasks are ${currentTasks.tasks[2].id}`);
 if (currentTasks.tasks.length === 0) {
   console.log(`current tasks are ${currentTasks.tasks}`);
 }
@@ -23,12 +16,6 @@ form.addEventListener("submit", (event) => {
   const validateStatus = document.querySelector("#taskStatus");
   
   let validationFail = 0;
-
-  // console.log("Task Name :" + validateName.value.length);
-  // console.log("Task Description :" + validateDescription.value.length);
-  // console.log("Task Assigned To :" + validateAssignedTo.value.length);
-  // console.log("Task Due Date :" + validateDueDate.value);
-  // console.log("Task Status:" + validateStatus.value);
   
   // Form validation for Task Name Field min length 5
   if (validateName.value.length > 5) {
@@ -88,19 +75,45 @@ form.addEventListener("submit", (event) => {
     return;
   } else {
     form.classList.add("was-validated");
-    alert("Creating Submitted Task")
+    alert("Creating Submitted Task");
     currentTasks.addTask(validateName.value,validateDescription.value,validateAssignedTo.value,validateDueDate.value,validateStatus.value);
-    let newTaskNumber = currentTasks.tasks.length - 1;
-    console.log(`New task created are ${currentTasks.tasks[newTaskNumber].id}, ${currentTasks.tasks[newTaskNumber].name}, ${currentTasks.tasks[newTaskNumber].description}, ${currentTasks.tasks[newTaskNumber].assignedTo}, ${currentTasks.tasks[newTaskNumber].dueDate}, ${currentTasks.tasks[newTaskNumber].status}`);
+    alert('after addTask'); 
+    //console.log(`New task created is ${currentTasks.tasks[newTaskNumber].id}, ${currentTasks.tasks[newTaskNumber].name}, ${currentTasks.tasks[newTaskNumber].description}, ${currentTasks.tasks[newTaskNumber].assignedTo}, ${currentTasks.tasks[newTaskNumber].dueDate}, ${currentTasks.tasks[newTaskNumber].status}`);
     alert("New Task Created");
     event.preventDefault();
     event.stopPropagation();
-    // validateName.classList.remove("is-invalid");
-    // validateDescription.classList.remove("is-invalid");
-    // validateAssignedTo.classList.remove("is-invalid");
-    // validateDueDate.classList.remove("is-invalid");
     form.reset();
     form.classList.remove("was-validated");
-    currentTasks.render(newTaskNumber);
+    //const tasksHtmlList = [];
+    //tasksHtmlList = currentTasks.render();
+    currentTasks.render();
   }
+});
+
+const taskList = document.querySelector("#task_cards");
+
+taskList.addEventListener("click", (event) => {
+
+  //if done button was clicked
+  if (event.target.classList.contains('done-button')) {
+    console.log(`Done button clicked on task ${event.target.parentElement.dataset.id}`);
+    //change status
+    let taskId = event.target.parentElement.dataset.id;
+    currentTasks.closeTask(taskId);
+    event.target.parentElement.parentElement.firstElementChild.innerHTML = 'Done';
+    //disable the button
+    event.target.setAttribute('disabled',true);
+    console.log(event.target.parentElement.parentElement.parentElement.parentElement);
+  }
+
+  //if done button was clicked
+  if (event.target.classList.contains('delete-button')) {
+    console.log(`Delete button clicked on task ${event.target.parentElement.dataset.id}`);
+    let taskId = event.target.parentElement.dataset.id;
+    if (confirm(`Delete Task ${taskId}`)) {
+      currentTasks.deleteTask(taskId);
+      currentTasks.render();  
+    }
+  }
+  
 });

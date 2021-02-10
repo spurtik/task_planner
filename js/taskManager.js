@@ -11,9 +11,9 @@ function createTaskHtml(task={}) {
     </ul>
        <div class="card-footer">
             <small class="font-weight-bold text-left">${task.status}</small>
-            <div class="float-right ml-5">
-            <button type="button" class="btn btn-outline-success">Done</button>
-            <button type="button" class="btn btn-outline-danger">Delete</button>
+            <div data-id="${task.id}" class="float-right ml-5">
+            <button type="button" class="btn btn-outline-success ${(task.status==='Done') ? 'inactive' : 'active'} done-button" ${(task.status==='Done') ? 'disabled' : ''}>Done</button>
+            <button type="button" class="btn btn-outline-danger active delete-button">Delete</button>
             </div>
         </div>
    </div><br />
@@ -30,11 +30,6 @@ class TaskManager {
 
     addTask (newTaskName, newTaskDesc, newTaskAssignee, newTaskDueDate, newTaskStatus) {
         this.currentId++;
-        // this.name = newTaskName;
-        // this.description = newTaskDesc;
-        // this.assignedTo = newTaskAssignee;
-        // this.dueDate = newTaskDueDate;
-        // this.status = newTaskStatus;
         this.tasks.push({
             id: this.currentId,
             name: newTaskName,
@@ -45,18 +40,31 @@ class TaskManager {
         })
     }
 
-    render(index) {
-        const tasksHtmlList = [];
-        //console.log(`The task array is ${this.tasks[index].name}`);
-        const taskToDisplay = this.tasks[index];
-        // dueDate = new Date(taskToDisplay.dueDate);
-        // let formattedDate = dueDate.toLocaleDateString();
-        const taskHtml = createTaskHtml(taskToDisplay);
-        console.log(taskHtml);
-        let p = document.createElement("div");
-        p.innerHTML= taskHtml;
-        document.getElementById('task_cards').appendChild(p);
-        
+    closeTask (id) {
+        const taskToClose = this.tasks.findIndex(task => task.id === Number(id));
+        console.log(`Task to close ${taskToClose}`);
+        if(taskToClose > -1) {
+            this.tasks[taskToClose].status = 'Done';
+        }
+    }
+
+    deleteTask (id) {
+        const taskToDelete = this.tasks.findIndex(task => task.id === Number(id));
+        console.log(`Task to delete ${taskToDelete}`);
+        if(taskToDelete > -1) {
+            this.tasks.splice(taskToDelete,1);
+        }
+    }
+
+
+    render() {
+        alert('inside render');
+        const tasksHtmlList = [];        
+        this.tasks.forEach(task => {
+            const taskHtml = createTaskHtml(task);
+            tasksHtmlList.push(taskHtml);
+        })
+        document.getElementById('task_cards').innerHTML = tasksHtmlList.join('<br>');    
     }
     
 }
