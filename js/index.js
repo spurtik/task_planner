@@ -10,6 +10,9 @@ if (currentTasks.tasks.length === 0) {
   console.log(`current tasks are ${currentTasks.tasks}`);
 }
 
+const taskHtml = createTaskHtml();
+console.log(taskHtml);
+
 const form = document.querySelector("#new-task-form");
 
 form.addEventListener("submit", (event) => {
@@ -98,5 +101,6 @@ form.addEventListener("submit", (event) => {
     // validateDueDate.classList.remove("is-invalid");
     form.reset();
     form.classList.remove("was-validated");
+    currentTasks.render(newTaskNumber);
   }
 });
