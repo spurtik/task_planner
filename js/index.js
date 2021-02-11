@@ -12,7 +12,7 @@ let validationFail = 0;
 
 
 function validate(validateData, validLength) {
-  if (validateData.value.length > validLength) {
+  if (validateData.value.length >= validLength) {
     validateData.classList.remove("is-invalid");
   } else {
     validateData.classList.add("is-invalid");
@@ -38,13 +38,13 @@ form.addEventListener("submit", (event) => {
   // console.log("Task Status:" + validateStatus.value);
 
   // Form validation for Task Name Field min length 5
-  validate(validateName);
+  validate(validateName,6);
 
   // Form validation for Task Description Field min length 5
-  validate(validateDescription);
+  validate(validateDescription,8);
 
   // Form validation for Task Assigned Field min length 5
-  validate(validateAssignedTo);
+  validate(validateAssignedTo,5);
 
   // Form validation for Due Date Field not empty
   if (validateDueDate.value) {
