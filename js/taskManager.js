@@ -1,27 +1,25 @@
-function createTaskHtml(name, description, assignedTo, dueDate, status) {
+function createTaskHtml(task={}) {
     const html = 
     `
     <br />
     <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">${name}</li>
-        <li class="list-group-item">${description}</li>
-        <li class="list-group-item">${assignedTo}</li>
-        <li class="list-group-item">${dueDate}</li>
+        <li class="list-group-item">${task.name}</li>
+        <li class="list-group-item">${task.description}</li>
+        <li class="list-group-item">${task.assignedTo}</li>
+        <li class="list-group-item">${task.dueDate}</li>
     </ul>
        <div class="card-footer">
-            <small class="font-weight-bold text-left">${status}</small>
-            <div class="float-right ml-5">
-            <button type="button" class="btn btn-outline-success">Done</button>
-            <button type="button" class="btn btn-outline-danger">Delete</button>
+            <small class="font-weight-bold text-left">${task.status}</small>
+            <div data-id="${task.id}" class="float-right ml-5">
+            <button type="button" class="btn btn-outline-success ${(task.status==='Done') ? 'inactive' : 'active'} done-button" ${(task.status==='Done') ? 'disabled' : ''}>Done</button>
+            <button type="button" class="btn btn-outline-danger active delete-button">Delete</button>
             </div>
         </div>
    </div><br />
     `
     return html;
 }
-
-
 
 class TaskManager {
     constructor(currentId=0) {
@@ -31,44 +29,40 @@ class TaskManager {
 
     addTask (newTaskName, newTaskDesc, newTaskAssignee, newTaskDueDate, newTaskStatus) {
         this.currentId++;
-        const  task = {
+        this.tasks.push({
             id: this.currentId,
             name: newTaskName,
             description: newTaskDesc,
             assignedTo: newTaskAssignee,
             dueDate: newTaskDueDate,
             status: newTaskStatus             
-        };
-        this.tasks.push(task);
-        
+        });   
     };
 
-    render() {
-        const tasksHtmlList = [];
-        let tasks = this.tasks;
-        
-        for (let taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
-            const task = tasks[taskIndex];
-            const date = new Date(task.dueDate);
-            const formattedDate =
-            date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-            const taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status);
-            tasksHtmlList.push(taskHtml);
+    closeTask (id) {
+        const taskToClose = this.tasks.findIndex(task => task.id === Number(id));
+        console.log(`Task to close ${taskToClose}`);
+        if(taskToClose > -1) {
+            this.tasks[taskToClose].status = 'Done';
         }
-        console.log(tasksHtmlList);
-        const taskHtml = tasksHtmlList.join('\n');
+    }
 
-        const taskList = document.querySelector('#task_cards');
-        taskList.innerHTML = taskHtml;
-       // taskList.innerHTML = taskHtml;
-        // const taskToDisplay = this.tasks[index];
-        // dueDate = new Date(taskToDisplay.dueDate);
-        // let formattedDate = dueDate.toLocaleDateString();
-      
-        // let p = document.createElement("div");
-        // p.innerHTML= taskHtml;
-        // document.getElementById('task_cards').appendChild(p);
-        
+    deleteTask (id) {
+        const taskToDelete = this.tasks.findIndex(task => task.id === Number(id));
+        console.log(`Task to delete ${taskToDelete}`);
+        if(taskToDelete > -1) {
+            this.tasks.splice(taskToDelete,1);
+        }
+    }
+
+    render() {
+        console.log('inside render');
+        const tasksHtmlList = [];    
+        this.tasks.forEach(task => {
+            const taskHtml = createTaskHtml(task);
+            tasksHtmlList.push(taskHtml);
+        })
+        document.getElementById('task_cards').innerHTML = tasksHtmlList.join('<br>');    
     }
     
 }
