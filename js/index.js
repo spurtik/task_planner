@@ -1,4 +1,6 @@
 const currentTasks = new TaskManager();
+currentTasks.load();
+currentTasks.render();
 if (currentTasks.tasks.length === 0) {
   console.log(`current tasks are ${currentTasks.tasks}`);
 }
@@ -38,13 +40,6 @@ form.addEventListener("submit", (event) => {
   // console.log("Task Status:" + validateStatus.value);
 
   // Form validation for Task Name Field min length 5
-  validate(validateName,6);
-
-  // Form validation for Task Description Field min length 5
-  validate(validateDescription,8);
-
-  // Form validation for Task Assigned Field min length 5
-  validate(validateAssignedTo,5);
 
   // Form validation for Due Date Field not empty
   if (validateDueDate.value) {
@@ -84,6 +79,7 @@ form.addEventListener("submit", (event) => {
     // event.preropagation();
     form.reset();
     form.classList.remove("was-validated");
+    currentTasks.save();
     currentTasks.render();
   }
 });
@@ -99,17 +95,21 @@ taskList.addEventListener("click", (event) => {
     let taskId = event.target.parentElement.dataset.id;
     currentTasks.closeTask(taskId);
     event.target.parentElement.parentElement.firstElementChild.innerHTML = 'Done';
+    currentTasks.save();
+    currentTasks.render();
     //disable the button
     event.target.setAttribute('disabled',true);
     console.log(event.target.parentElement.parentElement.parentElement.parentElement);
+    
   }
-
+ 
   //if done button was clicked
   if (event.target.classList.contains('delete-button')) {
     console.log(`Delete button clicked on task ${event.target.parentElement.dataset.id}`);
     let taskId = event.target.parentElement.dataset.id;
     if (confirm(`Delete Task ${taskId}`)) {
       currentTasks.deleteTask(taskId);
+      currentTasks.save();
       currentTasks.render();  
     }
   }
