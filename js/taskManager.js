@@ -1,6 +1,6 @@
-function createTaskHtml(task={}) {
-    const html = 
-    `
+function createTaskHtml(task = {}) {
+    const html =
+        `
     <br />
     <div class="card align-item-center" style="width: 22rem; margin:0 auto;">
     <ul class="list-group list-group-flush">
@@ -11,8 +11,8 @@ function createTaskHtml(task={}) {
     </ul>
        <div class="card-footer">
             <small class="font-weight-bold text-left">${task.status}</small>
-            <div data-id="${task.id}" class="float-right ml-5">
-            <button type="button" class="btn btn-outline-success ${(task.status==='Done') ? 'inactive' : 'active'} done-button" ${(task.status==='Done') ? 'disabled' : ''}>Done</button>
+            <div id= "info" data-id="${task.id}" class="float-right ml-5">
+            <button type="button" class="btn btn-outline-success ${(task.status === 'Done') ? 'inactive' : 'active'} done-button" ${(task.status === 'Done') ? 'disabled' : ''}>Done</button>
             <button type="button" class="btn btn-outline-danger active delete-button">Delete</button>
             </div>
         </div>
@@ -22,71 +22,58 @@ function createTaskHtml(task={}) {
 }
 
 class TaskManager {
-    constructor(currentId=0) {
+    constructor(currentId = 0) {
         this.currentId = currentId;
         this.tasks = [];
     }
 
-    addTask (newTaskName, newTaskDesc, newTaskAssignee, newTaskDueDate, newTaskStatus) {
+    addTask(newTaskName, newTaskDesc, newTaskAssignee, newTaskDueDate, newTaskStatus) {
         this.currentId++;
-        this.tasks.push({
+
+        firebase.database().ref('tasks/' + this.currentId).set({
             id: this.currentId,
             name: newTaskName,
             description: newTaskDesc,
             assignedTo: newTaskAssignee,
             dueDate: newTaskDueDate,
-            status: newTaskStatus             
-        });   
+            status: newTaskStatus
+        }); 
     };
-
-    closeTask (id) {
-        const taskToClose = this.tasks.findIndex(task => task.id === Number(id));
-        console.log(`Task to close ${taskToClose}`);
-        if(taskToClose > -1) {
-            this.tasks[taskToClose].status = 'Done';
-        }
-    }
-
-    deleteTask (id) {
-        const taskToDelete = this.tasks.findIndex(task => task.id === Number(id));
-        console.log(`Task to delete ${taskToDelete}`);
-        if(taskToDelete > -1) {
-            this.tasks.splice(taskToDelete,1);
-        }
-    }
 
     render() {
         console.log('inside render');
-        const tasksHtmlList = [];    
-        this.tasks.forEach(task => {
-            const taskHtml = createTaskHtml(task);
-            tasksHtmlList.push(taskHtml);
+        // Reading the data from the database
+        let data;
+
+        const tasksHtmlList = [];
+
+        firebase.database().ref('tasks/').on('value', function (snapshot) {
+            data = snapshot.val();
+            console.log("This is data speaking from open");
+            //console.log(data);
+            for (const key in data) {
+                if (Object.hasOwnProperty.call(data, key)) {
+                    const element = data[key];
+                    //console.log(element);
+                    const taskHtml = createTaskHtml(element);
+                    tasksHtmlList.push(taskHtml);
+                }
+            }
+            document.getElementById('task_cards').innerHTML = tasksHtmlList.join('<br>');
+        });
+    }
+
+    closeTask(id) {
+        firebase.database().ref('tasks/' + id).update({
+            status: "Done"
         })
-        document.getElementById('task_cards').innerHTML = tasksHtmlList.join('<br>');    
     }
 
-     //save the tasks as string and set the items in local storage
-    save() {
-        const tasksJson = JSON.stringify(this.tasks);
-        localStorage.setItem("tasks", tasksJson);
 
-        const currentId = String(this.currentId);
-        localStorage.setItem("currentId", currentId);
+    deleteTask(id) {
+        firebase.database().ref('tasks/' + id).remove();
+
+        firebase.database().ref('tasks/' + id).update({
+        });
     }
-
-    //load the tasks to display it on page 
-    load () {
-        if(localStorage.getItem("tasks")) {
-            const tasksJson = localStorage.getItem("tasks");
-            this.tasks = JSON.parse(tasksJson);
-            console.log(localStorage.getItem("tasks"));
-        }
-
-        if(localStorage.getItem("currentId")) {
-            const currentId = localStorage.getItem("currentId");
-            this.currentId = String(currentId);
-
-        }
-    }
-    
 }
