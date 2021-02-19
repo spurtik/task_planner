@@ -21,7 +21,7 @@ function createTaskHtml(task={}) {
     return html;
 }
 
-module.exports = class TaskManager {
+class TaskManager {
     constructor(currentId=0) {
         this.currentId = currentId;
         this.tasks = [];
