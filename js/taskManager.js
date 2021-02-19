@@ -20,7 +20,6 @@ function createTaskHtml(task={}) {
     `
     return html;
 }
-
 class TaskManager {
     constructor(currentId=0) {
         this.currentId = currentId;
@@ -28,9 +27,9 @@ class TaskManager {
     }
 
     addTask (newTaskName, newTaskDesc, newTaskAssignee, newTaskDueDate, newTaskStatus) {
-        this.currentId++;
+        
         this.tasks.push({
-            id: this.currentId,
+            id: this.currentId++,
             name: newTaskName,
             description: newTaskDesc,
             assignedTo: newTaskAssignee,
@@ -65,6 +64,17 @@ class TaskManager {
         document.getElementById('task_cards').innerHTML = tasksHtmlList.join('<br>');    
     }
 
+    getTaskById(taskId) {
+        let foundTask;
+        for (let i = 0; i < this.tasks.length; i++) {
+            const task = this.tasks[i];
+            if (task.id === taskId) {
+                foundTask = task;
+            };
+        }
+        return foundTask
+    };
+
      //save the tasks as string and set the items in local storage
     save() {
         const tasksJson = JSON.stringify(this.tasks);
@@ -90,3 +100,5 @@ class TaskManager {
     }
     
 }
+
+module.exports = TaskManager;
