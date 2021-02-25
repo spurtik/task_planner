@@ -12,7 +12,7 @@ function createTaskHtml(task={}) {
        <div class="card-footer">
             <small class="font-weight-bold text-left">${task.status}</small>
             <div data-id="${task.id}" class="float-right ml-5">
-            <small class="font-weight-bold text-left">${task.name}</small>
+            <small class="font-weight-bold text-left" hidden>${task.name}</small>
             <button type="button" class="btn btn-outline-success ${(task.status==='Done') ? 'inactive' : 'active'} done-button" ${(task.status==='Done') ? 'disabled' : ''}>Done</button>
             <button type="button" class="btn btn-outline-danger active delete-button">Delete</button>
             </div>
