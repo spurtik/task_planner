@@ -115,7 +115,8 @@ taskList.addEventListener("click", (event) => {
   if (event.target.classList.contains('delete-button')) {
     console.log(`Delete button clicked on task ${event.target.parentElement.dataset.id}`);
     let taskId = event.target.parentElement.dataset.id;
-    if (confirm(`Delete Task ${taskId}`)) {
+    let taskName = event.target.parentElement.firstElementChild.innerHTML;
+    if (confirm(`Delete Task (${taskName})`)) {
       currentTasks.deleteTask(taskId);
       currentTasks.save();
       currentTasks.render();  
