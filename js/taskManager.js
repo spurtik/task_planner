@@ -2,18 +2,18 @@ function createTaskHtml(task = {}) {
     const html =
         `
     <br />
-    <div id=""task-cards" class="card align-item-center" style="width: 22rem; margin:0 auto;">
-    <ul class="list-group list-group-flush">
+    <div id=""task-cards" class="card align-item-center" style="width: 25rem; margin:0 auto;">
+    <ul class="">
         <li class="list-group-item">${task.name}</li>
         <li class="list-group-item">${task.description}</li>
         <li class="list-group-item">${task.assignedTo}</li>
-        <li class="list-group-item">${task.dueDate}</li>
+        <li class="list-group-item border-bottom-0">${task.dueDate}</li>
     </ul>
-       <div class="card-footer">
+       <div class="card-footer pr-2"pl-2>
             <small class="font-weight-bold text-left"> ${(task.status === 'Done') ? '<i class="far fa-check-circle"></i> Task Completed ' : `${task.status}`}</small>
             <div data-id="${task.id}" class="float-right ml-5">
             <small class="font-weight-bold text-left" hidden>${task.name}</small>
-            <button type="button" class="btn btn-outline-success ${(task.status === 'Done') ? 'inactive' : 'active'} done-button" ${(task.status === 'Done') ? 'disabled' : ''}>Done</button>
+            <button type="button" class="btn btn-outline-success ${(task.status === 'Done') ? 'inactive' : 'active'} done-button" ${(task.status === 'Done') ? 'hidden' : ''}>Done</button>
             <button type="button" class="btn btn-outline-danger active delete-button">Delete</button>
             </div>
         </div>
@@ -72,6 +72,7 @@ class TaskManager {
             })
             document.getElementById('task_cards').innerHTML = tasksHtmlList.join('<br>');
         }
+       
     }
 
     getTaskById(taskId) {
