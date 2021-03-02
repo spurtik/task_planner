@@ -8,6 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- project css-->
     <link rel="stylesheet" href="./css/styles.css">
     <!-- FontAwesome CSS-->
@@ -74,27 +77,61 @@
                 <label class="col-sm-12 font-weight-bold" for="status">Status:<span class="text-danger">*</span></label>
                 <select class="col-sm-4 ml-3 form-control" id="taskStatus" required="true">
                     <option>In Progress</option>
-                    <option>Done</option>
+                    <option hidden>Done</option>
                     <option>Pending</option>
                 </select>
             </div>
-            <!-- <div class="valid-feedback">Looks good!</div> -->
-            <!-- <div class="invalid-feedback">Please provide a valid name.</div>   -->
-            <!-- <div class="col-sm-6">
-                    </div> -->
             <div class="col-sm-6">
-                <button type="submit" class="btn btn-primary font-weight-bold">Submit</button>
+                <button type="submit" class="btn btn-primary font-weight-bold" id="submitBtn"><i class="fas fa-plus"></i> ADD TASK</button>
             </div>
+           
         </form>
     </div>
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <!-- <p></p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="okBtn" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="container d-flex pl-0"><img src="https://imgur.com/Kh1gwTq.png">
+                    <h5 class="modal-title ml-2" id="exampleModalLabel"></h5>
+                </div> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span >&times;</span> </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+              Are you sure you want to delete the task ?
+            </div>
+            <div class="modal-footer"> <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button> <button type="button" id="delete" class="btn btn-danger">Delete</button> </div>
+        </div>
+    </div>
+</div>
     <!--  Tasks -->
     <!-- Card Layout to Display Task Lists -->
     <div id="tasks-header">
-    <h1 ><i class="fas fa-tasks"></i> My TASKS</h1>
+        <h1><i class="fas fa-tasks"></i> My TASKS</h1>
     </div>
     <div class="display-5 text-center" id="task_cards"></div>
     <!-- top of the page-->
-    <a href="#top" id="myBtn" class="justify-content-right">Top</a>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i
+            class="fas fa-arrow-alt-circle-up fa-2x"></i></button>
+            
 </body>
+<script src="js/scroll.js"></script>
 </html>
