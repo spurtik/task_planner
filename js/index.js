@@ -80,9 +80,7 @@ form.addEventListener("submit", (event) => {
     return;
   } else {
     form.classList.add("was-validated");
-    alert("Creating Submitted Task");
     currentTasks.addTask(validateName.value,validateDescription.value,validateAssignedTo.value,validateDueDate.value,validateStatus.value);
-    //alert('after addTask'); 
     alert("New Task Created");
     // event.preropagation();
     form.reset();
@@ -98,22 +96,22 @@ taskList.addEventListener("click", (event) => {
 
   //if done button was clicked
   if (event.target.classList.contains('done-button')) {
-    console.log(`Done button clicked on task ${event.target.parentElement.dataset.id}`);
+    //console.log(`Done button clicked on task ${event.target.parentElement.dataset.id}`);
     //change status
     let taskId = event.target.parentElement.dataset.id;
     currentTasks.closeTask(taskId);
-    event.target.parentElement.parentElement.firstElementChild.innerHTML = 'Done';
+    // event.target.parentElement.parentElement.firstElementChild.innerHTML = 'Done';
     currentTasks.save();
     currentTasks.render();
     //disable the button
     event.target.setAttribute('disabled',true);
-    console.log(event.target.parentElement.parentElement.parentElement.parentElement);
+    //console.log(event.target.parentElement.parentElement.parentElement.parentElement);
     
   }
  
   //if done button was clicked
   if (event.target.classList.contains('delete-button')) {
-    console.log(`Delete button clicked on task ${event.target.parentElement.dataset.id}`);
+    //console.log(`Delete button clicked on task ${event.target.parentElement.dataset.id}`);
     let taskId = event.target.parentElement.dataset.id;
     let taskName = event.target.parentElement.firstElementChild.innerHTML;
     if (confirm(`Delete Task (${taskName})`)) {
